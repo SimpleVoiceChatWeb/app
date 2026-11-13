@@ -32,13 +32,16 @@ are overwritten on the next deploy.
 Routing is hash-based, so every view is served by the same `index.html`:
 
 ```text
+/app/             entry route: #/voice when signed in, #/login otherwise
 /app/#/login      enter or confirm an invite code
-/app/#/call       the voice call
+/app/#/voice      the voice call
 /app/#/settings   devices, push-to-talk, audio
+/app/#/join/CODE  join link that pre-fills the code
 ```
 
 `/app/?code=ABC123` opens the login view with the code pre-filled.
-Old links to `/voice` are redirected to `/call` by the router.
+`#/call` stays as an alias for links shared while the client moved to `/app`,
+and unknown paths fall back to the entry route.
 
 ## GitHub Pages
 
